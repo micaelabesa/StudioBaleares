@@ -1,0 +1,36 @@
+// lib/airbnb-translations.ts
+
+export const TR = {
+  en: {
+    welcome:          "Welcome",
+    dearGuest:        "Dear guest,",
+    checkIn:          "CHECK-IN",
+    checkOut:         "CHECK-OUT",
+    wifi:             "WI-FI",
+    network:          "Network",
+    password:         "Password",
+    caseSensitive:    "(case sensitive)",
+    houseRules:       "HOUSE RULES",
+    recommendations:  "LOCAL RECOMMENDATIONS",
+    emergency:        "EMERGENCY CONTACTS",
+    managedBy:        "Managed by",
+    scanWifi:         "Scan to connect",
+    footerNote:       "We hope you have a wonderful stay.",
+  },
+  es: {
+    welcome:          "Bienvenido",
+    dearGuest:        "Estimado huésped,",
+    checkIn:          "LLEGADA",
+    checkOut:         "SALIDA",
+    wifi:             "WI-FI",
+    network:          "Red",
+    password:         "Contraseña",
+    caseSensitive:    "(distingue mayúsculas)",
+    houseRules:       "NORMAS DE LA CASA",
+    recommendations:  "RECOMENDACIONES LOCALES",
+    emergency:        "CONTACTOS DE EMERGENCIA",
+    managedBy:        "Gestionado por",
+    scanWifi:         "Escanea para conectarte",
+    footerNote:       "Esperamos que disfrutes de una estancia maravillosa.",
+  },
+} as const;
