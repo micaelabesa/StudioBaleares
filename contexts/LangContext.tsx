@@ -27,7 +27,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LangContext.Provider value={{ lang, t: translations[lang], toggleLang }}>
+    <LangContext.Provider value={{ lang, t: translations[lang] as unknown as typeof translations.en, toggleLang }}>
       {children}
     </LangContext.Provider>
   );
