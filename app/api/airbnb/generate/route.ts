@@ -11,9 +11,8 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { WelcomeGuideData } from "@/types/airbnb";
 
-const anthropic = new Anthropic();
-
 export async function POST(req: NextRequest) {
+  const anthropic = new Anthropic();
   const body = (await req.json()) as WelcomeGuideData;
   const { info, content, style } = body;
 

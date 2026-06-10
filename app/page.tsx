@@ -6,6 +6,7 @@ import { useStudio } from "@/contexts/StudioContext";
 import { useLang }   from "@/contexts/LangContext";
 import { Ornament }  from "@/components/ui/Ornament";
 import { ProBadge }  from "@/components/ui/ProBadge";
+import Logo          from "@/components/ui/Logo";
 
 const TOOL_KEYS = [
   { href: "/studio/qrmenu",   number: "01", tag: "Most Popular", tagEs: "Más Popular",    tagColor: "var(--terracotta)", live: true  },
@@ -57,6 +58,9 @@ export default function HomePage() {
 
         <div className="fu" style={{ maxWidth: 660, position: "relative" }}>
           <p className="tag" style={{ marginBottom: 18 }}>{t.hero.tag}</p>
+          <div style={{ marginBottom: 32 }}>
+            <Logo variant="hero" />
+          </div>
           <h1 style={{ fontSize: "clamp(40px, 6vw, 70px)", fontWeight: 400, color: T.ink, lineHeight: 1.15, marginBottom: 28 }}>
             {t.hero.title1}<br />
             <em style={{ color: T.terracotta }}>{t.hero.title2}</em><br />

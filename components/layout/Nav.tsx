@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { T } from "@/lib/constants";
 import { useStudio } from "@/contexts/StudioContext";
 import { useLang }   from "@/contexts/LangContext";
+import Logo          from "@/components/ui/Logo";
 
 export function Nav() {
   const pathname                                        = usePathname();
@@ -43,18 +44,8 @@ export function Nav() {
     }}>
 
       {/* Logo */}
-      <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-        <div style={{
-          width: 26, height: 26,
-          border: `1.5px solid ${T.terracotta}`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          transform: "rotate(45deg)",
-        }}>
-          <div style={{ width: 8, height: 8, background: T.terracotta }} />
-        </div>
-        <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, color: T.ink, letterSpacing: "0.05em" }}>
-          Studio Baleares
-        </span>
+      <Link href="/" style={{ textDecoration: "none" }}>
+        <Logo variant="nav" />
       </Link>
 
       {/* Links + actions */}

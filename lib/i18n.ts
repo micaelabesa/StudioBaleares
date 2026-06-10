@@ -150,9 +150,33 @@ export const translations = {
     },
     // Mini Branding Kit
     branding: {
-      tag:      "Tool 04 · Coming Soon",
+      tag:      "Tool 04 · AI-Powered",
       title:    "Mini Branding Kit",
       subtitle: "A curated brand identity for your hospitality business — in minutes",
+      steps:    ["Brand Info", "Your Kit"],
+      // Step 1 form
+      venueName:    "Venue name *",
+      venuePh:      "e.g. Casa Brisa",
+      venueType:    "Type of venue",
+      venueTypes:   ["Restaurant", "Café & Bistro", "Wine Bar", "Boutique Hotel", "Airbnb / Short-let", "Beach Club", "Other"],
+      keywords:     "3 words describing your aesthetic *",
+      keywordsPh:   "e.g. rustic, romantic, Mediterranean",
+      keywordsHint: "Separate with commas",
+      colorDir:     "Colour direction",
+      directions: [
+        { label: "Warm & Earthy",       desc: "Terracotta · Sand · Amber",  value: "warm"       },
+        { label: "Cool & Maritime",      desc: "Sea Blue · Teal · Sage",     value: "cool"       },
+        { label: "Natural & Organic",    desc: "Olive · Moss · Stone",       value: "natural"    },
+        { label: "Monochrome & Refined", desc: "Charcoal · Cream · Linen",   value: "monochrome" },
+      ],
+      generateBtn:   "Generate Brand Kit →",
+      generatingBtn: "Generating your brand kit…",
+      previewHint:   "AI crafts your colour palette, typography, tagline & logo mark",
+      // Step 2
+      downloadBtn:    "Download PNG →",
+      downloadingBtn: "Preparing…",
+      startOver:      "← Start over",
+      freeLimit:      "Free · 1 export/day",
       features: [
         "Answer 5 questions about your venue and vision",
         "Receive a curated Mediterranean colour palette and font pairing",
@@ -169,7 +193,7 @@ export const translations = {
       tryQr:    "Try QR Menu →",
     },
     // Footer
-    footer: { rights: "© 2025 Studio Baleares" },
+    footer: { rights: "© 2026 Studio Baleares" },
   },
 
   es: {
@@ -187,7 +211,7 @@ export const translations = {
     hero: {
       tag:      "Estudio Mediterráneo · Hospitality & Lifestyle",
       title1:   "Crea materiales de",
-      title2:   "hospitalidad bonitos",
+      title2:   "hostelería bonitos",
       title3:   "en minutos",
       subtitle: "Menús QR, posts para redes, guías de bienvenida y kits de branding — para restaurantes, cafés y anfitriones de Airbnb que quieren verse profesionales rápido.",
       cta:      "Empezar gratis",
@@ -198,7 +222,7 @@ export const translations = {
     tools: {
       tag:      "El Estudio",
       title:    "Tu kit de herramientas creativo",
-      subtitle: "Cuatro herramientas. Una estética. Diseñadas para que tu negocio de hospitalidad se vea de primera.",
+      subtitle: "Cuatro herramientas. Una estética. Diseñadas para que tu negocio de hostelería se vea de primera.",
       open:     "Abrir herramienta →",
       soon:     "Próximamente →",
     },
@@ -300,15 +324,39 @@ export const translations = {
       steps:    ["Info", "Estilo", "Vista previa"],
     },
     airbnb: {
-      tag:      "Herramienta 03 · Airbnb & Hospitalidad",
+      tag:      "Herramienta 03 · Airbnb & Hostelería",
       title:    "Generador de PDF de Bienvenida",
       subtitle: "Una guía de bienvenida bonita que tus huéspedes leerán de verdad",
       steps:    ["Propiedad & Detalles", "Contenido", "Estilo & Vista previa"],
     },
     branding: {
-      tag:      "Herramienta 04 · Próximamente",
+      tag:      "Herramienta 04 · Impulsada por IA",
       title:    "Mini Kit de Branding",
-      subtitle: "Una identidad de marca cuidada para tu negocio de hospitalidad — en minutos",
+      subtitle: "Una identidad de marca cuidada para tu negocio de hostelería — en minutos",
+      steps:    ["Info de Marca", "Tu Kit"],
+      // Step 1 form
+      venueName:    "Nombre del local *",
+      venuePh:      "ej. Casa Brisa",
+      venueType:    "Tipo de local",
+      venueTypes:   ["Restaurante", "Café & Bistró", "Bar de Vinos", "Boutique Hotel", "Airbnb / Alquiler", "Beach Club", "Otro"],
+      keywords:     "3 palabras que describan tu estética *",
+      keywordsPh:   "ej. rústico, romántico, mediterráneo",
+      keywordsHint: "Separa con comas",
+      colorDir:     "Dirección de color",
+      directions: [
+        { label: "Cálido & Terroso",      desc: "Terracota · Arena · Ámbar",    value: "warm"       },
+        { label: "Fresco & Marítimo",     desc: "Azul Mar · Verde Salvia",       value: "cool"       },
+        { label: "Natural & Orgánico",    desc: "Oliva · Musgo · Piedra",        value: "natural"    },
+        { label: "Monocromático & Fino",  desc: "Carbón · Crema · Lino",         value: "monochrome" },
+      ],
+      generateBtn:   "Generar Kit de Marca →",
+      generatingBtn: "Generando tu kit de marca…",
+      previewHint:   "La IA crea tu paleta, tipografía, eslogan y logo",
+      // Step 2
+      downloadBtn:    "Descargar PNG →",
+      downloadingBtn: "Preparando…",
+      startOver:      "← Empezar de nuevo",
+      freeLimit:      "Gratuito · 1 exportación/día",
       features: [
         "Responde 5 preguntas sobre tu local y visión",
         "Recibe una paleta mediterránea y combinación de fuentes curada",
@@ -323,7 +371,7 @@ export const translations = {
       startWith:"Empieza con el Generador de Menú QR — está activo y es gratuito.",
       tryQr:    "Probar Menú QR →",
     },
-    footer: { rights: "© 2025 Studio Baleares" },
+    footer: { rights: "© 2026 Studio Baleares" },
   },
 } as const;
 

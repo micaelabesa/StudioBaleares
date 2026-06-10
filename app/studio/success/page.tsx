@@ -1,22 +1,16 @@
 "use client";
 
-// app/studio/success/page.tsx
-//
-// Fix del polling post-Stripe:
-// — Antes: llamaba a refreshPlan() del contexto, que usaba el cliente browser
-//   con la sesión cacheada en memoria → leía el plan viejo durante varios segundos.
-// — Ahora: hace fetch a /api/stripe/plan que lee con supabaseAdmin (service role)
-//   directamente en servidor → siempre devuelve el valor real de Supabase.
-
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useStudio } from "@/contexts/StudioContext";
 import { useLang } from "@/contexts/LangContext";
 import { T } from "@/lib/constants";
 import { Ornament } from "@/components/ui/Ornament";
 
-export default function SuccessPage() {
+function SuccessInner() {
   const router                    = useRouter();
+  const searchParams              = useSearchParams();
+  const sessionId                 = searchParams.get("session_id");
   const { refreshPlan }           = useStudio();
   const { t }                     = useLang();
   const [confirmed, setConfirmed] = useState(false);
@@ -26,12 +20,12 @@ export default function SuccessPage() {
   useEffect(() => {
     const poll = async () => {
       try {
-        // Lee el plan desde el servidor con service role — sin caché
-        const res  = await fetch("/api/stripe/plan", { cache: "no-store" });
+        // Pasa session_id para activar el plan directo desde Stripe, sin webhook
+        const url  = sessionId ? `/api/stripe/plan?session_id=${sessionId}` : "/api/stripe/plan";
+        const res  = await fetch(url, { cache: "no-store" });
         const data = await res.json() as { plan?: string };
 
         if (data.plan === "pro") {
-          // Actualiza el contexto global para que el resto de la app lo sepa
           await refreshPlan();
           setConfirmed(true);
           if (intervalRef.current) clearInterval(intervalRef.current);
@@ -43,7 +37,6 @@ export default function SuccessPage() {
 
       setAttempts((a) => {
         const next = a + 1;
-        // Tras 12 intentos (24 s) redirigir de todas formas
         if (next >= 12 && intervalRef.current) {
           clearInterval(intervalRef.current);
           router.push("/studio/qrmenu");
@@ -52,21 +45,15 @@ export default function SuccessPage() {
       });
     };
 
-    // Primera llamada inmediata
     poll();
-    // Luego cada 2 segundos
     intervalRef.current = setInterval(poll, 2000);
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Cuando se confirma, redirigir tras 3 s
   useEffect(() => {
     if (!confirmed) return;
-    const t = setTimeout(() => router.push("/studio/qrmenu"), 3000);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => router.push("/studio/qrmenu"), 3000);
+    return () => clearTimeout(timer);
   }, [confirmed, router]);
 
   return (
@@ -78,7 +65,6 @@ export default function SuccessPage() {
     }}>
       <div style={{ maxWidth: 440 }}>
 
-        {/* Icono central */}
         <div style={{
           width: 72, height: 72,
           border: `1.5px solid ${confirmed ? T.terracotta : T.sandDark}`,
@@ -93,7 +79,6 @@ export default function SuccessPage() {
           }
         </div>
 
-        {/* Estado: esperando */}
         {!confirmed && (
           <>
             <p className="tag" style={{ marginBottom: 10 }}>{t.success.processingTag}</p>
@@ -117,7 +102,6 @@ export default function SuccessPage() {
           </>
         )}
 
-        {/* Estado: confirmado */}
         {confirmed && (
           <>
             <p className="tag" style={{ marginBottom: 10 }}>{t.success.tag}</p>
@@ -151,5 +135,13 @@ export default function SuccessPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense>
+      <SuccessInner />
+    </Suspense>
   );
 }
