@@ -29,7 +29,7 @@ export default function SubscriptionPage() {
   const [cancelled,     setCancelled]     = useState(false);
   const [error,         setError]         = useState("");
 
-  const [deleteStep,    setDeleteStep]    = useState<"idle" | "warn" | "sending" | "sent">("idle");
+  const [deleteStep,    setDeleteStep]    = useState<"idle" | "warn" | "sending">("idle");
   const [deleteError,   setDeleteError]   = useState("");
 
   const handleRequestDelete = async () => {
@@ -38,7 +38,7 @@ export default function SubscriptionPage() {
     try {
       const res = await fetch("/api/account/request-delete", { method: "POST" });
       if (!res.ok) { setDeleteStep("warn"); setDeleteError(s.deleteError); return; }
-      setDeleteStep("sent");
+      router.push("/studio/confirm-delete");
     } catch {
       setDeleteStep("warn");
       setDeleteError(s.deleteError);
@@ -395,13 +395,7 @@ export default function SubscriptionPage() {
             </div>
           )}
 
-          {deleteStep === "sent" && (
-            <div style={{ padding: "20px 24px", background: "#FFF8F8", border: "1px solid #C0392B28" }}>
-              <p style={{ fontSize: 13, color: T.ink, lineHeight: 1.65 }}>
-                📧 {s.deleteSent}
-              </p>
-            </div>
-          )}
+
         </div>
 
       </div>
