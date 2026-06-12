@@ -45,7 +45,7 @@ export default function HomePage() {
         alignItems: "center", justifyContent: "center",
         textAlign: "center", padding: "120px 40px 80px",
         background: `linear-gradient(180deg, ${T.sand} 0%, ${T.cream} 100%)`,
-        position: "relative", overflow: "hidden",
+        position: "relative", overflow: "hidden", zIndex: 0,
       }}>
         <svg style={{ position: "absolute", top: 70, right: 50, opacity: 0.07, pointerEvents: "none" }}
           width="110" height="170" viewBox="0 0 110 170">
@@ -77,10 +77,6 @@ export default function HomePage() {
           <p className="fu3 tag" style={{ marginTop: 28 }}>{t.hero.badge}</p>
         </div>
 
-        <div style={{ position: "absolute", bottom: 36, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, opacity: 0.35 }}>
-          <span style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase" }}>Scroll</span>
-          <div style={{ width: 1, height: 36, background: T.terracotta }} />
-        </div>
       </section>
 
       {/* ── Strip ────────────────────────────────────────────────────────────── */}

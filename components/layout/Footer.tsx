@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { T } from "@/lib/constants";
 import { useLang } from "@/contexts/LangContext";
+import Logo from "@/components/ui/Logo";
 
 export function Footer() {
   const { t } = useLang();
@@ -15,27 +16,26 @@ export function Footer() {
 
   return (
     <footer style={{
-      padding: "48px 60px",
+      padding: "28px 40px",
       borderTop: `1px solid ${T.sandDark}`,
-      display: "flex", justifyContent: "space-between", alignItems: "center",
-      flexWrap: "wrap", gap: 20,
+      background: T.white,
     }}>
-      <div>
-        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, color: T.ink }}>
-          Studio Baleares
-        </p>
-        <p className="tag" style={{ marginTop: 3 }}>Mediterranean Studio · Hospitality &amp; Lifestyle</p>
-      </div>
+      <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
 
-      <div style={{ display: "flex", gap: 28 }}>
-        {links.map((l) => (
-          <Link key={l.href} href={l.href} className="nav-link" style={{ fontSize: 10 }}>
-            {l.label}  {/* ← ahora usa t */}
-          </Link>
-        ))}
-      </div>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <Logo variant="nav" />
+        </Link>
 
-      <p style={{ fontSize: 11, color: T.mist }}>{t.footer.rights}</p>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="nav-link" style={{ fontSize: 10 }}>
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        <p style={{ fontSize: 10, color: T.mist, letterSpacing: "0.08em" }}>{t.footer.rights}</p>
+      </div>
     </footer>
   );
 }

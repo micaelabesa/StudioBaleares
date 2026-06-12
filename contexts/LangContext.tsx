@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, startTransition, ReactNode } from "react";
 import { translations, type Lang } from "@/lib/i18n";
 
 interface LangContextValue {
@@ -12,11 +12,13 @@ interface LangContextValue {
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "en";
+  // "en" matches the SSR output — after hydration we sync to localStorage
+  const [lang, setLang] = useState<Lang>("en");
+
+  useEffect(() => {
     const saved = localStorage.getItem("lang") as Lang | null;
-    return saved === "en" || saved === "es" ? saved : "en";
-  });
+    if (saved === "es") startTransition(() => setLang("es"));
+  }, []);
 
   const toggleLang = () => {
     const next = lang === "en" ? "es" : "en";
